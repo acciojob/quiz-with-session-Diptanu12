@@ -40,7 +40,9 @@ function renderQuestions() {
       choiceElement.type = "radio";
       choiceElement.name = `question-${i}`;
       choiceElement.value = choice;
-      if (userAnswers[i] === choice) choiceElement.checked = true;
+
+      choiceElement.checked = userAnswers[i] === choice;
+
       choiceElement.addEventListener("change", () => saveProgress(i, choice));
       const label = document.createElement("label");
       label.appendChild(choiceElement);
@@ -50,6 +52,7 @@ function renderQuestions() {
     questionsElement.appendChild(questionElement);
   });
 }
+
 
 function saveProgress(index, choice) {
   const progress = JSON.parse(sessionStorage.getItem("progress")) || [];
