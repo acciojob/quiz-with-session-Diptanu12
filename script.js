@@ -40,8 +40,7 @@ function renderQuestions() {
       choiceElement.type = "radio";
       choiceElement.name = `question-${i}`;
       choiceElement.value = choice;
-
-      choiceElement.checked = userAnswers[i] === choice;
+      choiceElement.checked = userAnswers[i] === choice; 
 
       choiceElement.addEventListener("change", () => saveProgress(i, choice));
       const label = document.createElement("label");
@@ -52,7 +51,6 @@ function renderQuestions() {
     questionsElement.appendChild(questionElement);
   });
 }
-
 
 function saveProgress(index, choice) {
   const progress = JSON.parse(sessionStorage.getItem("progress")) || [];
@@ -70,6 +68,5 @@ function calculateScore() {
   scoreElement.textContent = `Your score is ${score} out of ${questions.length}.`;
 }
 
-submitButton.addEventListener("click", calculateScore);
-
+document.getElementById("submit").addEventListener("click", calculateScore);
 renderQuestions();
